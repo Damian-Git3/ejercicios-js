@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div class="container d-flex flex-wrap justify-content-between align-content-center h-100 bg-info p-2">
+      <div class="card m-1 p-2 w-auto h-50" >
+        <h1 class="card-title">Juega Piedra, Papel o Tijera</h1>
+        <form id="gameForm">
+          <div class="mb-3">
+            <label for="userChoice" class="form-label">Elige tu opción:</label>
+            <select id="userChoice" class="form-select">
+              <option value="piedra">Piedra</option>
+              <option value="papel">Papel</option>
+              <option value="tijera">Tijera</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Jugar</button>
+        </form>
+        <p id="result" class="mt-3"></p>
+      </div>
+
+      <div class="card  m-1 p-2 w-auto h-50" >
+        <h1 class="card-title">Calcula tu Edad</h1>
+        <form id="ageForm">
+          <div class="mb-3">
+            <label for="birthDate" class="form-label"
+              >Ingresa tu fecha de nacimiento:</label
+            >
+            <input type="date" id="birthDate" class="form-control" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Calcular</button>
+        </form>
+        <p id="result-2" class="mt-3"></p>
+      </div>
+
+      <div class="card  m-1 p-2 w-auto h-50" >
+        <div class="card-body">
+          <h1 class="card-title">Números Aleatorios</h1>
+          <button id="generateButton" class="btn btn-primary mb-3">
+            Generar Números
+          </button>
+          <p id="numbersList" class="card-text"></p>
+          <p id="maxNumber" class="card-text"></p>
+          <p id="minNumber" class="card-text"></p>
+        </div>
+      </div>
+
+      <div class="card  m-1 p-2 w-100">
+        <div class="card-body">
+          <h1 class="card-title">Usuarios JSON Placeholder</h1>
+          <button id="fetchButton" class="btn btn-primary mb-3">
+            Obtener Usuarios
+          </button>
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control mb-3"
+            placeholder="Buscar por username"
+          />
+          <button id="searchButton" class="btn btn-secondary mb-3">
+            Buscar Usuario
+          </button>
+          <ul id="userList" class="list-group"></ul>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
