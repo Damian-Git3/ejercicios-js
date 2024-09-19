@@ -8,65 +8,70 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div class="container d-flex flex-wrap justify-content-between align-content-center h-100 bg-info p-2">
-      <div class="card m-1 p-2 w-auto h-50" >
-        <h1 class="card-title">Juega Piedra, Papel o Tijera</h1>
-        <form id="gameForm">
-          <div class="mb-3">
-            <label for="userChoice" class="form-label">Elige tu opción:</label>
-            <select id="userChoice" class="form-select">
-              <option value="piedra">Piedra</option>
-              <option value="papel">Papel</option>
-              <option value="tijera">Tijera</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary">Jugar</button>
-        </form>
-        <p id="result" class="mt-3"></p>
-      </div>
+    <div class="container bg-info">
+      <div class="row bg-danger">
+        <div class="col card m-1">
+          <h1 class="card-title">Juega Piedra, Papel o Tijera</h1>
+          <form id="formularioJuego">
+            <div class="mb-3">
+              <label for="eleccionUsuario" class="form-label"
+                >Elige tu opción:</label
+              >
+              <select id="eleccionUsuario" class="form-select">
+                <option value="piedra">Piedra</option>
+                <option value="papel">Papel</option>
+                <option value="tijera">Tijera</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Jugar</button>
+          </form>
+          <p id="resultado" class="mt-3"></p>
+        </div>
 
-      <div class="card  m-1 p-2 w-auto h-50" >
-        <h1 class="card-title">Calcula tu Edad</h1>
-        <form id="ageForm">
-          <div class="mb-3">
-            <label for="birthDate" class="form-label"
-              >Ingresa tu fecha de nacimiento:</label
-            >
-            <input type="date" id="birthDate" class="form-control" required />
-          </div>
-          <button type="submit" class="btn btn-primary">Calcular</button>
-        </form>
-        <p id="result-2" class="mt-3"></p>
-      </div>
-
-      <div class="card  m-1 p-2 w-auto h-50" >
-        <div class="card-body">
-          <h1 class="card-title">Números Aleatorios</h1>
-          <button id="generateButton" class="btn btn-primary mb-3">
-            Generar Números
-          </button>
-          <p id="numbersList" class="card-text"></p>
-          <p id="maxNumber" class="card-text"></p>
-          <p id="minNumber" class="card-text"></p>
+        <div class="col card m-1">
+          <h1 class="card-title">Calcula tu Edad</h1>
+          <form id="formularioEdad">
+            <div class="mb-3">
+              <label for="fechaNacimiento" class="form-label"
+                >Ingresa tu fecha de nacimiento:</label
+              >
+              <input type="date" id="fechaNacimiento" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Calcular</button>
+          </form>
+          <p id="resultado-2" class="mt-3"></p>
         </div>
       </div>
+      <div class="row bg-warning">
+        <div class="col card m-1">
+          <div class="card-body">
+            <h1 class="card-title">Números Aleatorios</h1>
+            <button id="botonGenerar" class="btn btn-primary mb-3">
+              Generar Números
+            </button>
+            <p id="listaNumeros" class="card-text"></p>
+            <p id="numeroMaximo" class="card-text"></p>
+            <p id="numeroMinimo" class="card-text"></p>
+          </div>
+        </div>
 
-      <div class="card  m-1 p-2 w-100">
-        <div class="card-body">
-          <h1 class="card-title">Usuarios JSON Placeholder</h1>
-          <button id="fetchButton" class="btn btn-primary mb-3">
-            Obtener Usuarios
-          </button>
-          <input
-            type="text"
-            id="searchInput"
-            class="form-control mb-3"
-            placeholder="Buscar por username"
-          />
-          <button id="searchButton" class="btn btn-secondary mb-3">
-            Buscar Usuario
-          </button>
-          <ul id="userList" class="list-group"></ul>
+        <div class="col card m-1">
+          <div class="card-body">
+            <h1 class="card-title">Usuarios JSON Placeholder</h1>
+            <button id="botonObtener" class="btn btn-primary mb-3">
+              Obtener Usuarios
+            </button>
+            <input
+              type="text"
+              id="entradaBusqueda"
+              class="form-control mb-3"
+              placeholder="Buscar por username"
+            />
+            <button id="botonBuscar" class="btn btn-secondary mb-3">
+              Buscar Usuario
+            </button>
+            <ul id="listaUsuarios" class="list-group"></ul>
+          </div>
         </div>
       </div>
     </div>

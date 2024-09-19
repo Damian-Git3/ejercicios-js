@@ -20,34 +20,34 @@ console.log(whiskers); // ?
 console.log(aFewOfMyFavoriteThings); // ?
 
 document
-  .getElementById("gameForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+  .getElementById("formularioJuego")
+  .addEventListener("submit", function (evento) {
+    evento.preventDefault();
 
-    const userChoice = document.getElementById("userChoice").value;
-    const computerChoice = getComputerChoice();
-    const result = determineWinner(userChoice, computerChoice);
+    const eleccionUsuario = document.getElementById("eleccionUsuario").value;
+    const eleccionComputadora = obtenerEleccionComputadora();
+    const resultado = determinarGanador(eleccionUsuario, eleccionComputadora);
 
     document.getElementById(
-      "result"
-    ).textContent = `Tú elegiste: ${userChoice}. La computadora eligió: ${computerChoice}. ${result}`;
+      "resultado"
+    ).textContent = `Tú elegiste: ${eleccionUsuario}. La computadora eligió: ${eleccionComputadora}. ${resultado}`;
   });
 
-const getComputerChoice = () => {
-  const choices = ["piedra", "papel", "tijera"];
-  const randomIndex = Math.floor(Math.random() * choices.length);
-  return choices[randomIndex];
+const obtenerEleccionComputadora = () => {
+  const opciones = ["piedra", "papel", "tijera"];
+  const indiceAleatorio = Math.floor(Math.random() * opciones.length);
+  return opciones[indiceAleatorio];
 };
 
-const determineWinner = (userChoice, computerChoice) => {
-  if (userChoice === computerChoice) {
-    return "Es un empate!";
+const determinarGanador = (eleccionUsuario, eleccionComputadora) => {
+  if (eleccionUsuario === eleccionComputadora) {
+    return "¡Es un empate!";
   }
 
   if (
-    (userChoice === "piedra" && computerChoice === "tijera") ||
-    (userChoice === "papel" && computerChoice === "piedra") ||
-    (userChoice === "tijera" && computerChoice === "papel")
+    (eleccionUsuario === "piedra" && eleccionComputadora === "tijera") ||
+    (eleccionUsuario === "papel" && eleccionComputadora === "piedra") ||
+    (eleccionUsuario === "tijera" && eleccionComputadora === "papel")
   ) {
     return "¡Ganaste!";
   } else {
@@ -55,92 +55,94 @@ const determineWinner = (userChoice, computerChoice) => {
   }
 };
 
-document.getElementById("ageForm").addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  const birthDate = new Date(document.getElementById("birthDate").value);
-  const today = new Date();
-
-  const age = calculateAge(birthDate, today);
-
-  document.getElementById(
-    "result-2"
-  ).textContent = `Han pasado ${age.years} años, ${age.months} meses y ${age.days} días desde que naciste.`;
-});
-
-const calculateAge = (birthDate, today) => {
-  let years = today.getFullYear() - birthDate.getFullYear();
-  let months = today.getMonth() - birthDate.getMonth();
-  let days = today.getDate() - birthDate.getDate();
-
-  if (days < 0) {
-    months--;
-    days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-  }
-
-  if (months < 0) {
-    years--;
-    months += 12;
-  }
-
-  return { years, months, days };
-};
-
 document
-  .getElementById("generateButton")
-  .addEventListener("click", function () {
-    const numbers = Array.from({ length: 20 }, () =>
-      Math.floor(Math.random() * 101)
+  .getElementById("formularioEdad")
+  .addEventListener("submit", function (evento) {
+    evento.preventDefault();
+
+    const fechaNacimiento = new Date(
+      document.getElementById("fechaNacimiento").value
     );
+    const hoy = new Date();
 
-    const maxNumber = Math.max(...numbers);
-    const minNumber = Math.min(...numbers);
+    const edad = calcularEdad(fechaNacimiento, hoy);
 
     document.getElementById(
-      "numbersList"
-    ).textContent = `Números: ${numbers.join(", ")}`;
-    document.getElementById(
-      "maxNumber"
-    ).textContent = `Número mayor: ${maxNumber}`;
-    document.getElementById(
-      "minNumber"
-    ).textContent = `Número menor: ${minNumber}`;
+      "resultado-2"
+    ).textContent = `Han pasado ${edad.años} años, ${edad.meses} meses y ${edad.días} días desde que naciste.`;
   });
 
-document.getElementById("fetchButton").addEventListener("click", function () {
+const calcularEdad = (fechaNacimiento, hoy) => {
+  let años = hoy.getFullYear() - fechaNacimiento.getFullYear();
+  let meses = hoy.getMonth() - fechaNacimiento.getMonth();
+  let días = hoy.getDate() - fechaNacimiento.getDate();
+
+  if (días < 0) {
+    meses--;
+    días += new Date(hoy.getFullYear(), hoy.getMonth(), 0).getDate();
+  }
+
+  if (meses < 0) {
+    años--;
+    meses += 12;
+  }
+
+  return { años, meses, días };
+};
+
+document.getElementById("botonGenerar").addEventListener("click", function () {
+  const numeros = Array.from({ length: 20 }, () =>
+    Math.floor(Math.random() * 101)
+  );
+
+  const numeroMaximo = Math.max(...numeros);
+  const numeroMinimo = Math.min(...numeros);
+
+  document.getElementById(
+    "listaNumeros"
+  ).textContent = `Números: ${numeros.join(", ")}`;
+  document.getElementById(
+    "numeroMaximo"
+  ).textContent = `Número mayor: ${numeroMaximo}`;
+  document.getElementById(
+    "numeroMinimo"
+  ).textContent = `Número menor: ${numeroMinimo}`;
+});
+
+document.getElementById("botonObtener").addEventListener("click", function () {
   fetch("https://jsonplaceholder.typicode.com/users")
-    .then((response) => response.json())
-    .then((users) => {
-      displayUsers(users);
-      window.users = users; // Guardar los usuarios en una variable global para la búsqueda
+    .then((respuesta) => respuesta.json())
+    .then((usuarios) => {
+      mostrarUsuarios(usuarios);
+      window.usuarios = usuarios; // Guardar los usuarios en una variable global para la búsqueda
     });
 });
 
-document.getElementById("searchButton").addEventListener("click", function () {
-  const username = document.getElementById("searchInput").value;
-  const user = window.users.find(
-    (user) => user.username.toLowerCase() === username.toLowerCase()
+document.getElementById("botonBuscar").addEventListener("click", function () {
+  const nombreUsuario = document.getElementById("entradaBusqueda").value;
+  const usuario = window.usuarios.find(
+    (usuario) => usuario.username.toLowerCase() === nombreUsuario.toLowerCase()
   );
-  if (user) {
-    displayUsers([user]);
+  if (usuario) {
+    mostrarUsuarios([usuario]);
   } else {
-    document.getElementById("userList").innerHTML =
+    document.getElementById("listaUsuarios").innerHTML =
       '<li class="list-group-item">Usuario no encontrado</li>';
   }
 });
 
-function displayUsers(users) {
-  const userList = document.getElementById("userList");
-  userList.innerHTML = "";
-  users.forEach((user) => {
-    const listItem = document.createElement("li");
-    listItem.className = "list-group-item";
-    listItem.innerHTML = `
-            <strong>ID:</strong> ${user.id} <br>
-            <strong>Nombre:</strong> ${user.name} <br>
-            <strong>Username:</strong> ${user.username} <br>
-            <strong>Email:</strong> ${user.email}
+function mostrarUsuarios(usuarios) {
+  const listaUsuarios = document.getElementById("listaUsuarios");
+  listaUsuarios.innerHTML = "";
+  usuarios.forEach((usuario) => {
+    const elementoLista = document.createElement("li");
+    elementoLista.className = "list-group-item";
+    elementoLista.innerHTML = `
+            <strong>ID:</strong> ${usuario.id} <br>
+            <strong>Nombre:</strong> ${usuario.name} <br>
+            <strong>Username:</strong> ${usuario.username} <br>
+            <strong>Email:</strong> ${usuario.email}
         `;
-    userList.appendChild(listItem);
+    listaUsuarios.appendChild(elementoLista);
   });
 }
